@@ -18,18 +18,20 @@ var hours = [
 ]
 var cityes = [];
 
-function City(name, custMin, custMax, totalCookiesNum, avgCookiesSales) {
+function City(name, custMin, custMax, avgCookiesSales) {
   this.name = name;
   this.custMin = custMin;
   this.custMax = custMax;
-  this.totalCookiesNum = 0;
   this.avgCookiesSales = avgCookiesSales;
-  this.avgCookiesPerHour = [];
+  this.totalCookiesNum = 0;
   this.custPerHour = [];
+  this.avgCookiesPerHour = [];
   this.locationResult = [];
 
   cityes.push(this);
 }
+
+
 City.prototype.getCustomerPerHour = function (custMin, custMax) {
 
   for (var i = 0; i < hours.length; i++) {
@@ -40,24 +42,27 @@ City.prototype.getCustomerPerHour = function (custMin, custMax) {
 
 
 }
+
+
 City.prototype.getAvgCookiesPerHour = function (custPerHour, avgCookiesSales) {
 
   for (var i = 0; i < this.custPerHour.length; i++) {
 
     var AvgAmountOfCookies = AvgCookiesPerHour(this.custPerHour[i], this.avgCookiesSales)
-    //this.avgCookiesPerHour.push(AvgAmountOfCookies)
+    this.avgCookiesPerHour.push(AvgAmountOfCookies)
     this.totalCookiesNum += this.avgCookiesPerHour[i];
   }
 
 }
 
-City.prototype.finalPairs = function (hours, avgCookiesSales) {
+City.prototype.finalPairs = function (time, avgCookiesPerHour) {
   for (var i = 0; i < hours.length; i++) {
     var pairs = zip(hours[i], this.avgCookiesPerHour[i])
     this.locationResult.push(pairs)
   }
 
 }
+
 City.prototype.render = function () {
   var container = document.getElementById('list');
   var city = document.createElement('h2');
@@ -94,16 +99,22 @@ function zip(hours, avgCookiesPerHour) {
 }
 
 
-//name, custMin, custMax, totalCookiesNum, avgCookiesSales
-var seattle = new City('Seattle', 23, 65, 0, 6.3)
+//name, custMin, custMax, avgCookiesSales
+
+var seattle = new City('Seattle', 23, 65, 6.3)
+var tokyo = new City('Tokyo', 3, 24, 1.2)
+var dubai = new City('Dubai', 11, 38, 3.7)
+var paris = new City('Paris', 20, 38, 2.3)
+var lima = new City('Lima', 2, 16, 4.6)
+
 
 for (var i = 0; i < cityes.length; i++) {
   cityes[i].getCustomerPerHour();
   cityes[i].getAvgCookiesPerHour();
-  //cityes[i].finalPairs();
+  cityes[i].finalPairs();
   cityes[i].render();
 
 }
 
-console.log(cityes)
 
+console.log(seattle.locationResult)
