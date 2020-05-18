@@ -1,0 +1,38 @@
+.myHeader {
+    background-color: orange;
+    font-family: 'Balsamiq Sans', cursive;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.myHeader h2 {
+    float: left;
+
+}
+
+.myHeader nav {
+    float: right;
+    padding: 0 40px;
+}
+
+.myHeader nav li {
+    display: inline;
+    padding: 10px;
+}
+.myHeader nav li a{
+    text-decoration: none;
+    color: wheat;
+}
+.pages {
+    background-color: tomato;
+    color: wheat;
+}
+
+main div img{
+    /* height: 100px; */
+    margin-left: 300px;
+    margin-top: 200px;
+}
