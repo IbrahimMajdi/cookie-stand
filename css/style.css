@@ -36,3 +36,6 @@ main div img{
     margin-left: 300px;
     margin-top: 200px;
 }
+table,th,td {
+    border: 1px solid black;
+}
