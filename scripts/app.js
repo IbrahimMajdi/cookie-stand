@@ -51,10 +51,8 @@ City.prototype.getAvgCookiesPerHour = function () {
     this.avgCookiesPerHour.push(AvgAmountOfCookies)
     this.totalCookiesNum += this.avgCookiesPerHour[i]
   }
- 
+
 }
-
-
 
 var container = document.getElementById('list');
 var tableE1 = document.createElement('table');
@@ -81,13 +79,63 @@ City.prototype.render = function () {
 }
 
 
+function renderFirstRow() {
 
-for (var i = 0; i < hours.length; i++) {
+  for (var i = 0; i < hours.length; i++) {
 
-  var th1 = document.createElement('th')
-  headerRow.appendChild(th1)
-  th1.textContent = hours[i];
+    var th1 = document.createElement('th')
+    headerRow.appendChild(th1)
+    th1.textContent = hours[i];
 
+  }
+}
+
+
+function renderTotaltRow() {
+
+
+  var totalrow = document.createElement('tr')
+  tableE1.appendChild(totalrow)
+
+  var totalstring = document.createElement('td')
+  totalrow.appendChild(totalstring)
+  totalstring.textContent = 'total'
+
+  var hoursTotal = [];
+
+  for (var j = 0; j < hours.length - 2; j++) {
+    var totalCells = 0
+    for (var i = 0; i < cities.length; i++) {
+      var columns = cities[i].avgCookiesPerHour[j]
+      totalCells += columns
+      // console.log(i, 'i');
+    }
+
+    hoursTotal.push(totalCells)
+    // console.log(j, 'j');
+    // console.log(parts, 'parts');
+  }
+
+  //console.log(hoursTotal, 'hourstotal');
+
+  
+
+  for (var i = 0; i < hours.length - 2; i++) {
+    var totaldata = document.createElement('td')
+    totalrow.appendChild(totaldata)
+    totaldata.textContent = hoursTotal[i]
+  }
+}
+
+function renderAll() {
+
+  renderFirstRow()
+
+  for (var i = 0; i < cities.length; i++) {
+    cities[i].render();
+  }
+
+  renderTotaltRow()
 }
 
 
@@ -100,44 +148,11 @@ var paris = new City('Paris', 20, 38, 2.3)
 var lima = new City('Lima', 2, 16, 4.6)
 
 
+
 for (var i = 0; i < cities.length; i++) {
   cities[i].getCustomerPerHour();
   cities[i].getAvgCookiesPerHour();
-  // cities[i].finalPairs();
-  cities[i].render();
-}
-
-
-
-
-var hoursTotal = [];
-
-for (var j = 0; j < hours.length - 2; j++) {
-  var totalCells=0
-  for (var i = 0; i < cities.length; i++) {
-    var columns = cities[i].avgCookiesPerHour[j]
-    totalCells += columns
-    // console.log(i, 'i');
-  }
   
-  hoursTotal.push(totalCells)
-  // console.log(j, 'j');
-  // console.log(parts, 'parts');
 }
 
-//console.log(hoursTotal, 'hourstotal');
-
-
-
-var totalrow = document.createElement('tr')
-tableE1.appendChild(totalrow)
-
-var totalstring = document.createElement('td')
-totalrow.appendChild(totalstring)
-totalstring.textContent ='total'
-
-for (var i = 0; i < hours.length - 2; i++) {
-  var totaldata = document.createElement('td')
-  totalrow.appendChild(totaldata)
-  totaldata.textContent = hoursTotal[i]
-}
+renderAll()
