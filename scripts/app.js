@@ -29,8 +29,6 @@ function City(name, custMin, custMax, avgCookiesSales) {
   this.totalCookiesNum = 0;
   this.custPerHour = [];
   this.avgCookiesPerHour = [];
-  //this.locationResult = [];
-
   cities.push(this);
 }
 
@@ -46,7 +44,6 @@ City.prototype.getCustomerPerHour = function () {
 
 City.prototype.getAvgCookiesPerHour = function () {
 
-
   for (var i = 0; i < this.custPerHour.length - 2; i++) {
 
     var AvgAmountOfCookies = Math.round(this.custPerHour[i] * this.avgCookiesSales)
@@ -54,18 +51,10 @@ City.prototype.getAvgCookiesPerHour = function () {
     this.avgCookiesPerHour.push(AvgAmountOfCookies)
     this.totalCookiesNum += this.avgCookiesPerHour[i]
   }
-  // console.log(this.avgCookiesPerHour);
-  // console.log(this.totalCookiesNum);
-
+ 
 }
 
-// City.prototype.finalPairs = function (time, avgCookiesPerHour) {
-//   for (var i = 0; i < hours.length; i++) {
-//     var pairs = zip(hours[i], this.avgCookiesPerHour[i])
-//     this.locationResult.push(pairs)
-//   }
 
-// }
 
 var container = document.getElementById('list');
 var tableE1 = document.createElement('table');
@@ -87,8 +76,6 @@ City.prototype.render = function () {
 
     if (i == hours.length - 2) {
       tde1.textContent = this.totalCookiesNum
-      //console.log(tde1.textContent);
-
     }
   }
 }
@@ -102,41 +89,6 @@ for (var i = 0; i < hours.length; i++) {
   th1.textContent = hours[i];
 
 }
-
-
-
-// var city = document.createElement('h2');
-// container.appendChild(city);
-// city.textContent = this.name;
-// var ulEl = document.createElement('ul');
-// container.appendChild(ulEl);
-// for (var i = 0; i < this.locationResult.length; i++) {
-//   var liEl = document.createElement('li');
-//   ulEl.appendChild(liEl);
-//   liEl.textContent = this.locationResult[i]
-// }
-// var liE2 = document.createElement('li');
-// ulEl.appendChild(liE2);
-// liE2.textContent = ` total : ${this.totalCookiesNum}`
-
-
-
-
-// function perHour(custMin, custMax) {
-//   var res =
-//   //console.log(res)
-//   return res
-// }
-
-// function AvgCookiesPerHour(custPerHour, avgCookiesSales) {
-//   var cookiesPerHour = Math.round(custPerHour * avgCookiesSales)
-//   return cookiesPerHour
-// }
-
-// function zip(hours, avgCookiesPerHour) {
-//   var pairs = `${hours}: ${avgCookiesPerHour}`
-//   return pairs
-// }
 
 
 //name, custMin, custMax, avgCookiesSales
@@ -156,36 +108,36 @@ for (var i = 0; i < cities.length; i++) {
 }
 
 
-var totalrow = document.createElement('tr')
-tableE1.appendChild(totalrow)
-
-for (var i = 0; i < hours.length - 1; i++) {
-  var totaldata = document.createElement('td')
-  totalrow.appendChild(totaldata)
-  totaldata.textContent = 'fd'
-}
 
 
-// var col = 0
 var hoursTotal = [];
 
 for (var j = 0; j < hours.length - 2; j++) {
-  var parts = [];
+  var totalCells=0
   for (var i = 0; i < cities.length; i++) {
-
     var columns = cities[i].avgCookiesPerHour[j]
-
-    parts.push(columns)
+    totalCells += columns
     // console.log(i, 'i');
   }
-
-
-  hoursTotal.push(parts)
-
+  
+  hoursTotal.push(totalCells)
   // console.log(j, 'j');
-  // console.log(col, 'col')
-  console.log(parts, 'parts');
-
-
+  // console.log(parts, 'parts');
 }
-console.log(hoursTotal, 'hourstotal');
+
+//console.log(hoursTotal, 'hourstotal');
+
+
+
+var totalrow = document.createElement('tr')
+tableE1.appendChild(totalrow)
+
+var totalstring = document.createElement('td')
+totalrow.appendChild(totalstring)
+totalstring.textContent ='total'
+
+for (var i = 0; i < hours.length - 2; i++) {
+  var totaldata = document.createElement('td')
+  totalrow.appendChild(totaldata)
+  totaldata.textContent = hoursTotal[i]
+}
