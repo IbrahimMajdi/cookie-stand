@@ -1,5 +1,9 @@
 'use strict'
 
+
+
+
+
 var hours = [
   '6am',
   '7am',
@@ -35,7 +39,7 @@ function City(name, custMin, custMax, avgCookiesSales) {
 
 City.prototype.getCustomerPerHour = function () {
 
-  for (var i = 0; i < hours.length; i++) {
+  for (var i = 0; i < hours.length -2 ; i++) {
     var randCustPerHour = Math.round(Math.random() * (this.custMax - this.custMin + 1)) + this.custMin
     this.custPerHour.push(randCustPerHour)
   }
@@ -44,22 +48,15 @@ City.prototype.getCustomerPerHour = function () {
 
 City.prototype.getAvgCookiesPerHour = function () {
 
-  for (var i = 0; i < this.custPerHour.length - 2; i++) {
+  for (var i = 0; i < this.custPerHour.length; i++) {
 
     var AvgAmountOfCookies = Math.round(this.custPerHour[i] * this.avgCookiesSales)
 
     this.avgCookiesPerHour.push(AvgAmountOfCookies)
     this.totalCookiesNum += this.avgCookiesPerHour[i]
   }
-
 }
 
-var container = document.getElementById('list');
-var tableE1 = document.createElement('table');
-container.appendChild(tableE1);
-
-var headerRow = document.createElement('tr')
-tableE1.appendChild(headerRow)
 
 City.prototype.render = function () {
 
@@ -77,6 +74,15 @@ City.prototype.render = function () {
     }
   }
 }
+
+
+
+var container = document.getElementById('list');
+var tableE1 = document.createElement('table');
+container.appendChild(tableE1);
+
+var headerRow = document.createElement('tr')
+tableE1.appendChild(headerRow)
 
 
 function renderFirstRow() {
@@ -135,8 +141,8 @@ function renderAll() {
     cities[i].render();
   }
 
-  renderTotaltRow()
 }
+renderTotaltRow()
 
 
 //name, custMin, custMax, avgCookiesSales
@@ -149,10 +155,39 @@ var lima = new City('Lima', 2, 16, 4.6)
 
 
 
-for (var i = 0; i < cities.length; i++) {
-  cities[i].getCustomerPerHour();
-  cities[i].getAvgCookiesPerHour();
-  
-}
 
-renderAll()
+// for (var i = 0; i < cities.length; i++) {
+//   cities[i].getCustomerPerHour();
+//   cities[i].getAvgCookiesPerHour();
+  
+// }
+
+
+
+var locations = document.getElementById("locations")
+
+locations.addEventListener('submit', function(event){
+  event.preventDefault();
+  var locationName= event.target.location.value;
+  console.log(locationName);
+  var minimumNumber=event.target.minimum.value;
+  console.log(minimumNumber);
+  var maximumNumber=event.target.maximum.value;
+  console.log(maximumNumber);
+  var avarageCookiesNumber= event.target.avgCookies.value;
+  console.log(avarageCookiesNumber);
+
+  var location= new City (locationName,minimumNumber,maximumNumber,avarageCookiesNumber);
+  console.log(location);
+  console.log(cities);
+
+  location.getCustomerPerHour();
+  location.getAvgCookiesPerHour();
+  
+  renderAll();
+})
+
+renderAll();
+
+
+//renderAll()
