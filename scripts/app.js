@@ -1,9 +1,5 @@
 'use strict'
 
-
-
-
-
 var hours = [
   '6am',
   '7am',
@@ -39,7 +35,7 @@ function City(name, custMin, custMax, avgCookiesSales) {
 
 City.prototype.getCustomerPerHour = function () {
 
-  for (var i = 0; i < hours.length -2 ; i++) {
+  for (var i = 0; i < hours.length - 2; i++) {
     var randCustPerHour = Math.round(Math.random() * (this.custMax - this.custMin + 1)) + this.custMin
     this.custPerHour.push(randCustPerHour)
   }
@@ -88,7 +84,6 @@ tableE1.appendChild(headerRow)
 function renderFirstRow() {
 
   for (var i = 0; i < hours.length; i++) {
-
     var th1 = document.createElement('th')
     headerRow.appendChild(th1)
     th1.textContent = hours[i];
@@ -98,7 +93,6 @@ function renderFirstRow() {
 
 
 function renderTotaltRow() {
-
 
   var totalrow = document.createElement('tr')
   tableE1.appendChild(totalrow)
@@ -118,13 +112,7 @@ function renderTotaltRow() {
     }
 
     hoursTotal.push(totalCells)
-    // console.log(j, 'j');
-    // console.log(parts, 'parts');
   }
-
-  //console.log(hoursTotal, 'hourstotal');
-
-  
 
   for (var i = 0; i < hours.length - 2; i++) {
     var totaldata = document.createElement('td')
@@ -141,53 +129,63 @@ function renderAll() {
     cities[i].render();
   }
 
+  renderTotaltRow()
 }
-renderTotaltRow()
 
 
 //name, custMin, custMax, avgCookiesSales
-
 var seattle = new City('Seattle', 23, 65, 6.3)
 var tokyo = new City('Tokyo', 3, 24, 1.2)
 var dubai = new City('Dubai', 11, 38, 3.7)
 var paris = new City('Paris', 20, 38, 2.3)
 var lima = new City('Lima', 2, 16, 4.6)
 
-
-
-
-// for (var i = 0; i < cities.length; i++) {
-//   cities[i].getCustomerPerHour();
-//   cities[i].getAvgCookiesPerHour();
+for (var i = 0; i < cities.length; i++) {
   
-// }
+  cities[i].getCustomerPerHour();
+  cities[i].getAvgCookiesPerHour();
+}
 
 
 
 var locations = document.getElementById("locations")
 
-locations.addEventListener('submit', function(event){
+locations.addEventListener('submit', function (event) {
   event.preventDefault();
-  var locationName= event.target.location.value;
-  console.log(locationName);
-  var minimumNumber=event.target.minimum.value;
-  console.log(minimumNumber);
-  var maximumNumber=event.target.maximum.value;
-  console.log(maximumNumber);
-  var avarageCookiesNumber= event.target.avgCookies.value;
-  console.log(avarageCookiesNumber);
+  var name = event.target.location.value;
+  // console.log(name);
+  var custMin = event.target.minimum.value;
+  // console.log(custMin);
+  var custmax = event.target.maximum.value;
+  // console.log(custmax);
+  var avgCookiesSales = event.target.avgCookies.value;
+  // console.log(avgCookiesSales);
 
-  var location= new City (locationName,minimumNumber,maximumNumber,avarageCookiesNumber);
-  console.log(location);
-  console.log(cities);
+  var newlocation = new City(name, parseInt(custMin), parseInt(custmax), parseInt(avgCookiesSales));
 
-  location.getCustomerPerHour();
-  location.getAvgCookiesPerHour();
+  newlocation.getCustomerPerHour();
+  newlocation.getAvgCookiesPerHour();
+
+  var bool = false;
+
+  for (var i = 0; i < cities.length; i++) {
+    if (newlocation.name == cities[i].name) {
+      bool = true;
+      break;
+    }
+  }
+
+  // if (bool == true) {
+
+  //   var item = document.getElementById(newlocation.name);
+  //   item.parentNode.removeChild(item);
+  // }
+
+  tableE1.removeChild(tableE1.lastChild)
+  newlocation.render()
   
   renderAll();
 })
 
-renderAll();
-
-
-//renderAll()
+//renderAll();
+console.log(cities);
