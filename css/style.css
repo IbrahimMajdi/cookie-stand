@@ -22,20 +22,83 @@
     display: inline;
     padding: 10px;
 }
-.myHeader nav li a{
+
+.myHeader nav li a {
     text-decoration: none;
-    color: wheat;
-}
-.pages {
-    background-color: tomato;
-    color: wheat;
+    color: rgb(255, 255, 255);
 }
 
-main div img{
+.pages {
+    background-color: tomato;
+    color: rgb(255, 255, 255);
+}
+
+main div img {
     /* height: 100px; */
     margin-left: 300px;
     margin-top: 200px;
 }
-table,th,td {
+
+table,
+th,
+td {
     border: 1px solid black;
+}
+
+.city {
+    background-color: chocolate;
+    color: white;
+    font-family: fantasy;
+}
+
+.location {
+    text-align: center;
+}
+
+.location h3 {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+#hours {}
+
+#hours p {
+    font-family: fantasy;
+    background-color: tomato;
+    color: rgb(255, 255, 255);
+    padding-top: 20px;
+    text-align: center;
+}
+
+div h4 {
+    margin-top: 20px;
+    text-align: center;
+    font-family: fantasy;
+}
+
+#family {
+    margin-top: 10px;
+}
+
+#list {
+    /* background-color: turquoise; */
+    font-family: fantasy;
+
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    font-family: fantasy;
+    background-color:tomato;
+}
+
+th {
+    height: 20px;
+    color: black;
+}
+
+tr {
+    color: white;
 }

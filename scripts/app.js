@@ -57,8 +57,11 @@ City.prototype.getAvgCookiesPerHour = function () {
 City.prototype.render = function () {
 
   var cityname = document.createElement('tr')
+  cityname.setAttribute('id',this.name)
   tableE1.appendChild(cityname)
+
   cityname.textContent = this.name
+  
 
   for (var i = 0; i < hours.length - 1; i++) {
     var tde1 = document.createElement('td')
@@ -141,7 +144,7 @@ var paris = new City('Paris', 20, 38, 2.3)
 var lima = new City('Lima', 2, 16, 4.6)
 
 for (var i = 0; i < cities.length; i++) {
-  
+
   cities[i].getCustomerPerHour();
   cities[i].getAvgCookiesPerHour();
 }
@@ -162,30 +165,35 @@ locations.addEventListener('submit', function (event) {
   // console.log(avgCookiesSales);
 
   var newlocation = new City(name, parseInt(custMin), parseInt(custmax), parseInt(avgCookiesSales));
-
   newlocation.getCustomerPerHour();
   newlocation.getAvgCookiesPerHour();
 
   var bool = false;
 
   for (var i = 0; i < cities.length; i++) {
+
     if (newlocation.name == cities[i].name) {
       bool = true;
       break;
     }
+
   }
+  
 
-  // if (bool == true) {
+  if (bool == true) {
+    
+    var item = document.getElementById(newlocation.name);
+    console.log(newlocation.name);
+    
 
-  //   var item = document.getElementById(newlocation.name);
-  //   item.parentNode.removeChild(item);
-  // }
+    item.parentNode.removeChild(item);
+  }
 
   tableE1.removeChild(tableE1.lastChild)
   newlocation.render()
-  
-  renderAll();
+  renderTotaltRow()
+
 })
 
-//renderAll();
+renderAll();
 console.log(cities);
