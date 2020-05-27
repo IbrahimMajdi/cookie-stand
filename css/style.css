@@ -91,7 +91,7 @@ table {
     margin-top: 10px;
     width: 100%;
     font-family: fantasy;
-    background-color:tomato;
+    background-color: tomato;
 }
 
 th {
@@ -102,3 +102,16 @@ th {
 tr {
     color: white;
 }
+
+.product p{
+    background-color: orange;
+    font-family: fantasy;
+    text-align: center;
+    color: white;
+}
+
+.product ul img{
+    border: 1px solid black;
+    margin: 10px;
+}
+
