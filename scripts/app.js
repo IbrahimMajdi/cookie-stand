@@ -57,11 +57,11 @@ City.prototype.getAvgCookiesPerHour = function () {
 City.prototype.render = function () {
 
   var cityname = document.createElement('tr')
-  cityname.setAttribute('id',this.name)
+  cityname.setAttribute('id', this.name)
   tableE1.appendChild(cityname)
 
   cityname.textContent = this.name
-  
+
 
   for (var i = 0; i < hours.length - 1; i++) {
     var tde1 = document.createElement('td')
@@ -154,7 +154,9 @@ for (var i = 0; i < cities.length; i++) {
 var locations = document.getElementById("locations")
 
 locations.addEventListener('submit', function (event) {
+
   event.preventDefault();
+
   var name = event.target.location.value;
   // console.log(name);
   var custMin = event.target.minimum.value;
@@ -178,16 +180,18 @@ locations.addEventListener('submit', function (event) {
     }
 
   }
-  
 
-  if (bool == true) {
-    
-    var item = document.getElementById(newlocation.name);
-    console.log(newlocation.name);
-    
 
-    item.parentNode.removeChild(item);
-  }
+
+
+  // if (bool == true) {
+  //   var item = document.getElementById(newlocation.name);
+  //   console.log(item);
+
+  //   item.parentNode.removeChild(item);
+  // }
+
+
 
   tableE1.removeChild(tableE1.lastChild)
   newlocation.render()
