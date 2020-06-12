@@ -101,7 +101,7 @@ function renderTotaltRow() {
   totalrow.appendChild(totalstring)
   totalstring.textContent = 'total'
 
-  var hoursTotal = [];
+  // var hoursTotal = [];
 
   for (var j = 0; j < hours.length - 2; j++) {
     var totalCells = 0
@@ -111,20 +111,19 @@ function renderTotaltRow() {
       // console.log(i, 'i');
     }
 
-    hoursTotal.push(totalCells)
-    // console.log(j, 'j');
-    // console.log(parts, 'parts');
+    // hoursTotal.push(totalCells)
+    var totaldata = document.createElement('td')
+    totalrow.appendChild(totaldata)
+    totaldata.textContent = totalCells;
   }
 
   //console.log(hoursTotal, 'hourstotal');
 
   
 
-  for (var i = 0; i < hours.length - 2; i++) {
-    var totaldata = document.createElement('td')
-    totalrow.appendChild(totaldata)
-    totaldata.textContent = hoursTotal[i]
-  }
+  // for (var i = 0; i < hours.length - 2; i++) {
+    
+  // }
 }
 
 function renderAll() {
